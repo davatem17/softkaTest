@@ -1,0 +1,215 @@
+.search-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.table-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    min-width: 600px;
+}
+
+.product-table th, .product-table td {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.product-table th {
+    background-color: #f8f9fb;
+    font-weight: normal;
+    color: #555;
+}
+
+.product-table td {
+    background-color: #ffffff;
+}
+
+.info-icon {
+    font-size: 12px;
+    color: #999;
+    margin-left: 5px;
+}
+
+.logo {
+    width: 35px;
+    height: 35px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.pagination-select {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-button {
+    background-color: #ffcc33;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: #0F265C;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+    .product-table {
+        min-width: 100%; /* Ajustar ancho mínimo de tabla en pantallas pequeñas */
+    }
+
+    .product-table th, .product-table td {
+        padding: 10px;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer span {
+        margin-bottom: 10px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar {
+        width: 100%; /* Ajustar ancho de la barra de búsqueda en pantallas pequeñas */
+        margin-bottom: 10px; /* Añadir margen inferior en pantallas pequeñas */
+    }
+
+    .add-button {
+        width: 100%; /* Botón de añadir ocupa todo el ancho en pantallas pequeñas */
+        padding: 10px; /* Ajustar padding en pantallas pequeñas */
+        margin-bottom: 10px; /* Añadir margen inferior en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-table th, .product-table td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .search-input {
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+
+    .pagination-select {
+        width: 100%;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .add-button {
+        width: 100%;
+        font-size: 14px; /* Ajustar tamaño de fuente en pantallas pequeñas */
+        padding: 12px; /* Ajustar padding en pantallas pequeñas */
+    }
+}
+
+
+
+
+/* Estilos para el contenedor del menú */
+.menu-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Estilos para el botón de los tres puntos */
+  .menu-button {
+    cursor: pointer;
+    font-size: 18px; /* Tamaño del icono de tres puntos */
+    padding: 10px;
+  }
+  
+  /* Estilos para el contenido del menú */
+  .menu-content {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 120px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  /* Estilos para los enlaces dentro del menú */
+  .menu-content a {
+    color: black;
+    padding: 10px 12px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+  }
+  
+  /* Cambio de color al pasar el ratón sobre una opción */
+  .menu-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Mostrar el menú cuando el contenedor es hover */
+  .menu-container:hover .menu-content {
+    display: block;
+  }

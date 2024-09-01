@@ -1,0 +1,47 @@
+<div class="header">
+    <input type="text" placeholder="Buscar..." class="search-bar" (input)="onSearch($event.target)" />
+    <button class="add-button" (click)="changePageCreate()">Agregar</button>
+  </div>
+<div class="table-container">
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Logo</th>
+                <th>Nombre del producto</th>
+                <th>Descripción </th>
+                <th>Fecha de liberación </th>
+                <th>Fecha de reestructuración </th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of productsOnDisplay">
+                <td>
+                    <div ><img class="logo" src="{{product.logo}}" alt=""></div>
+                </td>
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.date_release | date: 'dd/MM/yyyy'}}</td>
+                <td>{{product.date_revision |date: 'dd/MM/yyyy' }}</td>
+                <td> <div class="menu-container">
+                    <div class="menu-button">&#8942;</div>
+                    <div class="menu-content">
+                        <a  (click)="editProductPage(product.id)">Editar</a>
+                    </div>
+                </div></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="footer">
+        <div>
+            <button (click)="changePage(currentPage - 1)" [disabled]="currentPage<=1"><</button>
+            <span>{{ products.length }} Resultados</span>
+            <button (click)="changePage(currentPage + 1)"  [disabled]="totalPages<=1">></button>
+        </div>
+        <select class="pagination-select" (change)="changePageSize($event.target)">
+            <option>5</option>
+            <option>10</option>
+            <option>20</option>
+        </select>
+    </div>
+</div>
