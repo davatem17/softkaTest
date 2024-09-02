@@ -94,7 +94,6 @@
     cursor: pointer;
 }
 
-/* Estilos Responsivos */
 @media (max-width: 768px) {
     .product-table {
         min-width: 100%; /* Ajustar ancho mínimo de tabla en pantallas pequeñas */
@@ -119,14 +118,14 @@
     }
 
     .search-bar {
-        width: 100%; /* Ajustar ancho de la barra de búsqueda en pantallas pequeñas */
-        margin-bottom: 10px; /* Añadir margen inferior en pantallas pequeñas */
+        width: 100%; 
+        margin-bottom: 10px; 
     }
 
     .add-button {
-        width: 100%; /* Botón de añadir ocupa todo el ancho en pantallas pequeñas */
-        padding: 10px; /* Ajustar padding en pantallas pequeñas */
-        margin-bottom: 10px; /* Añadir margen inferior en pantallas pequeñas */
+        width: 100%; 
+        padding: 10px; 
+        margin-bottom: 10px;
     }
 }
 
@@ -161,30 +160,27 @@
 
     .add-button {
         width: 100%;
-        font-size: 14px; /* Ajustar tamaño de fuente en pantallas pequeñas */
-        padding: 12px; /* Ajustar padding en pantallas pequeñas */
+        font-size: 14px; 
+        padding: 12px; 
     }
 }
 
 
-
-
-/* Estilos para el contenedor del menú */
 .menu-container {
     position: relative;
     display: inline-block;
   }
   
-  /* Estilos para el botón de los tres puntos */
+
   .menu-button {
     cursor: pointer;
-    font-size: 18px; /* Tamaño del icono de tres puntos */
+    font-size: 18px; 
     padding: 10px;
   }
   
-  /* Estilos para el contenido del menú */
+  
   .menu-content {
-    display: none; /* Oculto por defecto */
+    display: none; 
     position: absolute;
     right: 0;
     background-color: white;
@@ -195,7 +191,6 @@
     overflow: hidden;
   }
   
-  /* Estilos para los enlaces dentro del menú */
   .menu-content a {
     color: black;
     padding: 10px 12px;
@@ -204,12 +199,10 @@
     font-size: 14px;
   }
   
-  /* Cambio de color al pasar el ratón sobre una opción */
   .menu-content a:hover {
     background-color: #f1f1f1;
   }
   
-  /* Mostrar el menú cuando el contenedor es hover */
   .menu-container:hover .menu-content {
     display: block;
   }

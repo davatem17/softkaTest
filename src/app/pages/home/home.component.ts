@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit{
     public router: Router
   ){}
   ngOnInit(){
-    
     this.findProducts();
     setTimeout(() => {
       this.mostrarMensaje= false;
@@ -29,7 +28,6 @@ export class HomeComponent implements OnInit{
   findProducts(){
     this._productService.getProducts().subscribe({
       next: (resp: any) => {
-        console.log('ver la respuesta',resp.data)
         this.products = resp.data;
         this.totalPages = Math.ceil(this.products.length / this.pageSize);
         this.viewProductsOnDisplay(this.products);
@@ -40,7 +38,6 @@ export class HomeComponent implements OnInit{
     });
   }
   changePageSize(event: any){
-    console.log('ver el evento',event.value)
     this.pageSize = event.value;
     this.totalPages = Math.ceil(this.totalProducts / this.pageSize);
     this.viewProductsOnDisplay(this.products);
@@ -57,9 +54,7 @@ export class HomeComponent implements OnInit{
     this.currentPage = page;
     this.viewProductsOnDisplay(this.products);
   }
-  probar(evt: any){
-    console.log('ver lo que cambia',evt.value)
-  }
+ 
   onSearch(query: any) {
     let product
     product = this.products.filter(product =>

@@ -14,33 +14,37 @@ export class CreateEditComponent implements OnInit {
   viewMessage: Boolean = false;
   product: any;
   message: String = '';
-  idProduct: any = this.activeRoute.snapshot.paramMap.get('id');
+  idProduct: any;
   constructor(private _productService: ProductService,
     private activeRoute: ActivatedRoute,
     public router: Router
   ) { }
   ngOnInit(): void {
+    this.idProduct = this.activeRoute.snapshot.paramMap.get('id')
     this.createEditForm();
-    if(this.idProduct!==null){
+    if (this.idProduct !== null) {
       this.formCreateProduct.get('id').disable();
       this.findProductID();
     }
   }
-  findProductID(){
+  findProductID() {
     this._productService.getProductID(this.idProduct).subscribe({
-      next:(resp: any) => {
+      next: (resp: any) => {
         this.product = resp;
         this.fillProductData()
-        console.log('ver si trajo',resp)
+      },
+      error: (err: any) => {
+        this.message = 'Error al buscar el producto: ' + err
+        this.showModal();
       },
     });
   }
-  fillProductData(){
-    const fieldForm = ['id','name','description','logo','date_release','date_revision']
-    fieldForm.forEach((e:any)=>{
+  fillProductData() {
+    const fieldForm = ['id', 'name', 'description', 'logo', 'date_release', 'date_revision']
+    fieldForm.forEach((e: any) => {
       this.formCreateProduct.controls[e].setValue(this.product[e])
     })
-    
+
   }
   createEditForm() {
     this.formCreateProduct = new FormGroup({
@@ -52,8 +56,8 @@ export class CreateEditComponent implements OnInit {
       date_revision: new FormControl('', Validators.required),
     })
     this.formCreateProduct.get('date_release').valueChanges.subscribe(
-      (date:any)=>{
-        if(this.formCreateProduct.controls.date_release!==''){
+      (date: any) => {
+        if (this.formCreateProduct.controls.date_release !== '') {
           const dateOld = new Date(date);
           const yearOld = dateOld.getFullYear() - 1;
           dateOld.setFullYear(yearOld);
@@ -79,50 +83,47 @@ export class CreateEditComponent implements OnInit {
       "date_release": form.date_release,
       "date_revision": form.date_revision
     }
-    if(this.idProduct!==null){
+    if (this.idProduct !== null) {
       delete body.id;
-      this._productService.updateProduct(this.idProduct,body).subscribe({
-        next:(resp:any)=> {
-          console.log('si edito');
+      this._productService.updateProduct(this.idProduct, body).subscribe({
+        next: (resp: any) => {
           this.message = 'Editado con exito';
           this.createEditForm();
           this.showModal();
-          
+        },
+        error:(err:any)=> {
+          this.message = 'Error al buscar el producto: ' + err
+          this.showModal();
         },
       });
-    }else{
+    } else {
       this._productService.validateID(form.id).pipe(
         switchMap(resultadoValidacion => {
           if (!resultadoValidacion) {
-            // Si la validación es exitosa, llamamos al otro servicio
             return this._productService.addProduct(body);
           } else {
             this.message = 'ID duplicado'
             this.showModal();
-            // Si la validación falla, devolvemos un observable vacío o algún mensaje de error
             return of('ID duplicado');
           }
         }),
         catchError(error => {
-          // Manejo de errores globales
-          console.error('Error en la operación:', error);
           return of(`Error en la operación: ${error.message}`);
         })
       ).subscribe({
         next: (resp: any) => {
-          if(resp.message=="Product added successfully"){
+          if (resp.message == "Product added successfully") {
             this.message = 'Guardado con exito';
             this.createEditForm();
             this.showModal();
           }
         },
-        error: error => {
-          console.error('Error capturado en el subscribe:', error);
-        }
+        error:(err:any)=> {
+          this.message = 'Error al buscar el producto: ' + err
+          this.showModal();
+        },
       });
     }
-    console.log('ver el formulario',form)
-    
   }
   showModal(): void {
     this.viewMessage = true;
@@ -130,6 +131,6 @@ export class CreateEditComponent implements OnInit {
       this.viewMessage = false;
       this.router.navigate(['/']);
     }, 1000);
-   
+
   }
 }
